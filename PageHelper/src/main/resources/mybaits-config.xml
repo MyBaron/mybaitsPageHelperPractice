@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="db.properties"/>
+
+
+    <!-- 配置分页插件 -->
+    <!--位置一定要正确！！！放的位置一定要正确-->
+
+    <plugins>
+        <!--分页插件 5.0 版本和 4.2.x 实现完全不同,否则会报错-->
+        <!--5.0用的类是com.github.pagehelper.PageInterceptor-->
+        <!--5.0以下用的是com.github.pagehelper.PageHelpe-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!--
+            这里是可以使用参数的 填写参数形式是<property name="param1" value="value1"/>
+          这里我不用参数，默认就可以了，有需求可以填上参数。可以参考网上的文档
+
+            -->
+
+        </plugin>
+    </plugins>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+
+
+    <mappers>
+        <mapper resource="mapper/personDao.xml"/>
+    </mappers>
+
+
+
+
+
+</configuration>
